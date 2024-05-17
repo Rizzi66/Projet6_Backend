@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const bookRoutes = require('./routes/book');
+const userRoutes = require('./routes/user')
+
 const app = express();
 
 mongoose.connect('mongodb+srv://UserRW:test123@cluster0.taw3ysv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
@@ -16,5 +19,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+
+app.use('/api/books', bookRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
