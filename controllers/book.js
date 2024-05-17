@@ -20,6 +20,7 @@ exports.createBook = (req, res, next) => {
     //console.log(req.body)
     //console.log({...req.body})
     delete req.body._id;
+    console.log(req)
     const book = new Book(
     req.body
     );
