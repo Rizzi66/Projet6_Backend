@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user')
 
 const app = express();
-
 
 mongoose.connect('mongodb+srv://UserRW:test123@cluster0.taw3ysv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -23,5 +23,6 @@ app.use((req, res, next) => {
 
 app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
