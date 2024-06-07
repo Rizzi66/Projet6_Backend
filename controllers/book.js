@@ -125,12 +125,12 @@ exports.createRating = (req, res, next) => {
             const userIdArray = rates.map(rate => rate.userId)
 
             //Vérification de l'userID pour voir si une note a déjà été donnée
-            if (userIdArray.includes(req.body.userId)) {
+            if (userIdArray.includes(req.auth.userId)) {
                 res.status(403).json( { message : 'Forbidden' })
             } else {
                 //Ajout de la nouvelle note dans le "book" en question
                 rates.push({
-                    userId: req.body.userId,
+                    userId: req.auth.userId,
                     grade: req.body.rating
                 });
                 
